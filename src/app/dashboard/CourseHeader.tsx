@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import {
@@ -11,11 +10,11 @@ import {
 
 const CourseHeader = () => {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 mb-5 ">
+    <div className="flex flex-wrap items-center justify-between gap-4 ">
       {/* Left Section */}
-      <div>
-        <h2 className="text-xl font-bold">My Courses</h2>
-        <p className="text-sm text-muted-foreground">
+      <div className="p-4">
+        <h2 className="text-xl font-bold text-gray-700">My Courses</h2>
+        <p className="text-sm text-gray-500 text-muted-foreground">
           Total 6 course you have started
         </p>
       </div>
@@ -24,7 +23,7 @@ const CourseHeader = () => {
       <div className="flex items-center gap-4">
         {/* Dropdown */}
         <Select>
-          <SelectTrigger className="w-[150px] h-8 text-sm">
+          <SelectTrigger className="w-[150px] h-8 text-sm ">
             <SelectValue placeholder="All Courses" />
           </SelectTrigger>
           <SelectContent>
@@ -36,9 +35,12 @@ const CourseHeader = () => {
         </Select>
 
         {/* Toggle */}
-        <div className="flex items-center gap-2">
-          <Switch id="hide-completed" />
-          <Label htmlFor="hide-completed" className="text-sm">
+        <div className="flex items-center gap-2 ">
+          <Switch
+            id="hide-completed"
+            className="data-[state=checked]:bg-black"
+          />
+          <Label htmlFor="hide-completed" className="text-sm ">
             Hide completed
           </Label>
         </div>

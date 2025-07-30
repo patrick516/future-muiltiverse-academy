@@ -1,63 +1,59 @@
+"use client";
+import { useState } from "react";
 import CourseCard from "./CourseCard";
-import person1 from "@/assets/images/person1.png";
-import person2 from "@/assets/images/person2.png";
-import person3 from "@/assets/images/person3.png";
-import person4 from "@/assets/images/person4.png";
+import type { CourseCardProps } from "./CourseCard";
+import toast from "react-hot-toast";
+import { allCourses } from "./data/courses";
+import CoursePagination from "./course-controls/CoursePagination";
 
-const courses = [
-  {
-    image: person1,
-    tag: "UI/UX",
-    rating: 4.4,
-    reviews: "1.23k",
-    title: "Sales Agent / Agency",
-    subtitle: "Sales Agent / Agency Course",
-    duration: "30 minutes",
-    progress: 70,
-    status: "continue",
-  },
-  {
-    image: person2,
-    tag: "UI/UX",
-    rating: 4.2,
-    reviews: "424",
-    title: "Sales Manager",
-    subtitle: "Sales Manager Course",
-    duration: "16 minutes",
-    progress: 60,
-    status: "continue",
-  },
-  {
-    image: person3,
-    tag: "UI/UX",
-    rating: 3.8,
-    reviews: "634",
-    title: "Key Account Manager",
-    subtitle: "Key Account Manager Course",
-    duration: "30 minutes",
-    progress: 45,
-    status: "start-over",
-  },
-  {
-    image: person4,
-    tag: "UI/UX",
-    rating: 4.7,
-    reviews: "34",
-    title: "Key Account Director",
-    subtitle: "Key Account Director Course",
-    duration: "30 minutes",
-    progress: 100,
-    status: "completed",
-  },
-];
+// How many courses to show per page
+const itemsPerPage = 4;
 
 const CourseGrid = () => {
+  const [courses, setCourses] = useState<CourseCardProps[]>(allCourses);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Handle reset
+  const handleStartOver = (index: number) => {
+    const courseIndex = (currentPage - 1) * itemsPerPage + index;
+    const updated = [...courses];
+    updated[courseIndex].progress = 0;
+    updated[courseIndex].status = "start-over";
+    setCourses(updated);
+  };
+
+  // Handle continue
+  const handleContinue = (index: number) => {
+    const courseIndex = (currentPage - 1) * itemsPerPage + index;
+    toast.success(`Continuing course: ${courses[courseIndex].title}`);
+  };
+
+  // Pagination calculations
+  const totalPages = Math.ceil(courses.length / itemsPerPage);
+  const paginatedCourses = courses.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2">
-      {courses.map((course) => (
-        <CourseCard key={course.title} {...course} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-2">
+        {paginatedCourses.map((course, i) => (
+          <CourseCard
+            key={course.title}
+            {...course}
+            onStartOver={() => handleStartOver(i)}
+            onContinue={() => handleContinue(i)}
+          />
+        ))}
+      </div>
+
+      <CoursePagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={(page) => setCurrentPage(page)}
+      />
+    </>
   );
 };
 

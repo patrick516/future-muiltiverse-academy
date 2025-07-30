@@ -26,7 +26,7 @@ const DashboardTopBar = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="flex items-center gap-2 bg-white border-none"
+          className="flex  hover:bg-[#CFB16D] items-center gap-2 bg-white border-none"
         >
           <Funnel className="w-4 h-4 text-gray-400" />
           Filter

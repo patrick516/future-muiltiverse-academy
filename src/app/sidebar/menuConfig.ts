@@ -1,38 +1,186 @@
+import {
+  Home,
+  LayoutDashboard,
+  BookOpen,
+  ShieldCheck,
+  Newspaper,
+  Video,
+  MessageSquare,
+  BarChart,
+} from "lucide-react";
+
 import type { MenuItem } from "./Sidebar.types";
 
 export const menuItems: MenuItem[] = [
   {
     label: "Home",
-    icon: "/images/home.svg",
+    icon: Home,
     path: "/",
-  },
-  {
-    label: "Dashboard",
-    icon: "/images/dashboard.svg",
-    path: "/dashboard",
     children: [
       {
         label: "Overview",
-        icon: "/images/dashboard.svg",
+        icon: BarChart,
         path: "/dashboard/overview",
       },
       {
         label: "Reports",
-        icon: "/images/dashboard.svg",
+        icon: BarChart,
         path: "/dashboard/reports",
       },
     ],
   },
-  { label: "My Courses", icon: "/images/courses.svg", path: "/courses" },
-  { label: "VIP Member Area", icon: "/images/vip.svg", path: "/vip" },
+  {
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    path: "/dashboard",
+    children: [
+      {
+        label: "Overview",
+        icon: BarChart,
+        path: "/dashboard/overview",
+      },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/dashboard/reports",
+      },
+    ],
+  },
+  {
+    label: "My Courses",
+    icon: BookOpen,
+    path: "/courses",
+    children: [
+      {
+        label: "Overview",
+        icon: BarChart,
+        path: "/courses/overview",
+      },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/courses/reports",
+      },
+    ],
+  },
+  {
+    label: "VIP Member Area",
+    icon: ShieldCheck,
+    path: "/vip",
+    children: [
+      {
+        label: "Overview",
+        icon: BarChart,
+        path: "/vip/overview",
+      },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/vip/reports",
+      },
+    ],
+  },
   {
     label: "Official News & Updates",
-    icon: "/images/news.svg",
+    icon: Newspaper,
     path: "/news-and-updates",
+    children: [
+      {
+        label: "Overview",
+        icon: BarChart,
+        path: "/news/overview",
+      },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/news/reports",
+      },
+    ],
   },
   {
     label: "Tutorial Videos",
-    icon: "/images/tutorial.svg",
+    icon: Video,
     path: "/tutorial-videos",
+    children: [
+      {
+        label: "Overview",
+        icon: BarChart,
+        path: "/tutorials/overview",
+      },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/tutorials/reports",
+      },
+    ],
+  },
+
+  {
+    label: "GraceAI",
+    icon: "/images/grace.svg",
+    path: "/graceai",
+    children: [
+      {
+        label: "Add new chat",
+        icon: MessageSquare,
+        path: "/graceai/new",
+      },
+      {
+        label: "Where do I find XYZ?",
+        icon: MessageSquare,
+        path: "/graceai/faq/1",
+      },
+      {
+        label: "What is XYZ?",
+        icon: MessageSquare,
+        path: "/graceai/faq/2",
+      },
+      {
+        label: "How does XYZ work?",
+        icon: MessageSquare,
+        path: "/graceai/faq/3",
+      },
+      {
+        label: "Please tell me XYZ!",
+        icon: MessageSquare,
+        path: "/graceai/faq/4",
+      },
+    ],
+  },
+
+  {
+    label: "Welcome",
+    type: "section",
+    children: [
+      { label: "Welcome & Overview", path: "/academy/welcome" },
+      { label: "Official News & Updates", path: "/academy/news" },
+      { label: "FAQ / Q&A", path: "/academy/faq" },
+      { label: "Mission & Movement", path: "/academy/mission" },
+      { label: "Launch", path: "/academy/launch" },
+      { label: "FMRA", path: "/academy/fmra" },
+    ],
+  },
+
+  {
+    label: "Future Multiverse & EXPO Ecosystem",
+    type: "section",
+    children: [
+      {
+        label: "Future Multiverse Overview",
+        path: "/academy/ecosystem/overview",
+      },
+      { label: "Info Material Package", path: "/academy/ecosystem/info" },
+    ],
+  },
+
+  {
+    label: "Resources & Knowledge",
+    type: "section",
+    children: [
+      { label: "Tutorials", path: "/resources/tutorials" },
+      { label: "General Information", path: "/resources/general-info" },
+      { label: "Market Research & Trends", path: "/resources/market-research" },
+      { label: "Compliance & Regulations", path: "/resources/compliance" },
+    ],
   },
 ];

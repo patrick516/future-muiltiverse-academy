@@ -29,7 +29,7 @@ const AcademyOverviewCard = () => {
   return (
     <div className="mt-5 space-y-6 rounded-md ">
       {/* Main content row */}
-      <div className="flex flex-col items-stretch gap-6 md:flex-row">
+      <div className="flex flex-col items-stretch gap-6 lg:flex-row md:flex-row">
         {/* Left content */}
         <div className="flex-1 space-y-3">
           <h5 className="text-md font-semibold text-[#CFB16D]">
@@ -68,7 +68,7 @@ const AcademyOverviewCard = () => {
         </div>
 
         {/* Right image */}
-        <div className="md:w-[280px] lg:w-[300px] xl:w-[320px] shrink-0 pr-2">
+        <div className="w-[300px] shrink-0 mr-12">
           <img
             src={academyImage}
             alt="Academy overview"
@@ -80,7 +80,7 @@ const AcademyOverviewCard = () => {
       {/* Quick Links */}
       <div className="flex flex-col space-y-3">
         <p className="text-lg font-bold text-gray-900">Quick Links</p>
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-4">
           {quickLinks.map((link) => (
             <Button
               key={link}

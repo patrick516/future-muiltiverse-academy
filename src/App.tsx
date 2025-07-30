@@ -1,28 +1,30 @@
-import React from "react";
+import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import Sidebar from "@/app/sidebar/Sidebar";
-import DashboardTopBar from "@/app/dashboard/DashboardTopBar";
-// import DashboardImage from "@/app/dashboard/DashboardImage";
-// import CourseSection from "./app/dashboard/CourseSection";
-import AcademyOverviewCard from "@/app/dashboard/AcademyOverviewCard";
+import HomePage from "@/app/home/HomePage";
+import DashboardPage from "@/app/dashboard/page";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import CoursesPage from "@/app/courses/page";
+import CourseDetailPage from "@/app/courses/CourseDetailPage";
+
 function App() {
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
+    <div className="flex h-screen overflow-hidden">
+      <Toaster position="top-center" reverseOrder={false} />
+      <aside className="w-[240px] bg-white">
+        <ScrollArea className="w-full h-full">
+          <Sidebar />
+        </ScrollArea>
+      </aside>
       <main className="flex-1 p-6 bg-white">
-        <DashboardTopBar />
-        {/* <DashboardImage /> */}
-        <AcademyOverviewCard />
-        {/* <div className="mt-5">
-          <CourseSection />
-        </div> */}
-
-        {/* Future content goes below */}
-        <div className="mt-10">
-          {/* You can replace this with cards, filters, etc. later */}
-        </div>
+        <ScrollArea className="w-full h-full">
+          <Routes>
+            <Route path="/courses" element={<CoursesPage />} />
+            <Route path="/courses/:slug" element={<CourseDetailPage />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+          </Routes>
+        </ScrollArea>
       </main>
     </div>
   );
