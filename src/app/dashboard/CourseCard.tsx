@@ -44,7 +44,7 @@ const CourseCard = ({
   onContinue,
 }: CourseCardProps) => {
   return (
-    <Card className="p-1 bg-white border shadow-sm 00 rounded-xl">
+    <Card className="bg-white border border-gray-300 shadow-sm  00 rounded-xl">
       {/* Image inside a rounded container */}
       <div className="overflow-hidden rounded-lg">
         <img src={image} alt={title} className="object-cover w-full h-50" />

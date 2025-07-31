@@ -6,6 +6,7 @@ import {
   Newspaper,
   Video,
   MessageSquare,
+  Youtube,
   BarChart,
 } from "lucide-react";
 
@@ -99,7 +100,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     label: "Tutorial Videos",
-    icon: Video,
+    icon: Youtube,
     path: "/tutorial-videos",
     children: [
       {

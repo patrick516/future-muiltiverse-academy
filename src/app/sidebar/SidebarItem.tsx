@@ -17,7 +17,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
     setOpen((prev) => !prev);
   };
 
-  // Render section headers like "Welcome", "Resources & Knowledge"
+  // SECTION HEADERS
   if (item.type === "section") {
     return (
       <div className="mt-5">
@@ -43,10 +43,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
   return (
     <div className="space-y-0.5">
       {/* Main nav item */}
-      <div className="flex items-center justify-between px-3 py-1.5 rounded-md hover:bg-[#CFB16D] transition-all">
+      <div className="flex items-center justify-between px-3 py-1.5 rounded-sm transition">
         <Link to={item.path!} className="flex items-center gap-2">
           {item.icon && (
-            <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md">
+            <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md transition hover:bg-[#CFB16D] group">
               {typeof item.icon === "string" ? (
                 <img
                   src={item.icon}
@@ -55,7 +55,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
                 />
               ) : (
                 React.createElement(item.icon, {
-                  className: "w-4 h-4 text-gray-700",
+                  className: `w-4 h-4 ${
+                    item.label === "Tutorial Videos"
+                      ? "text-red-600"
+                      : "text-[#CFB16D]"
+                  } group-hover:text-white`,
                 })
               )}
             </div>
@@ -68,7 +72,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
           )}
         </Link>
 
-        {/* Expand/Collapse button */}
+        {/* Expand/Collapse toggle */}
         {!collapsed && hasChildren && (
           <button
             onClick={handleToggle}
@@ -86,7 +90,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
             <Link
               key={child.path}
               to={child.path!}
-              className="flex items-center justify-between px-2.5 py-1 text-sm text-gray-600 hover:text-black hover:bg-gray-100 transition"
+              className="flex items-center justify-between px-2.5 py-1 text-sm text-gray-600 hover:text-black hover:bg-gray-100 transition rounded-md"
             >
               <span>{child.label}</span>
               <span className="text-xs text-gray-400">›</span>

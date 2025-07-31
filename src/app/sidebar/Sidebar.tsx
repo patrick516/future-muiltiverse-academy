@@ -5,7 +5,7 @@ import SidebarHeader from "./SidebarHeader";
 
 const Sidebar: React.FC = () => {
   return (
-    <div className="flex flex-col w-64 text-black transition-all duration-300 bg-white">
+    <div className="flex flex-col text-black transition-all duration-300 bg-white w-72">
       <SidebarHeader />
 
       <nav className="flex flex-col gap-2 p-5 px-2 pl-5 mt-1">

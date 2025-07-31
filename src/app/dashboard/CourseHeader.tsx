@@ -10,9 +10,9 @@ import {
 
 const CourseHeader = () => {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 ">
+    <div className="flex flex-wrap items-center justify-between gap-4 mb-4 ">
       {/* Left Section */}
-      <div className="p-4">
+      <div className="">
         <h2 className="text-xl font-bold text-gray-700">My Courses</h2>
         <p className="text-sm text-gray-500 text-muted-foreground">
           Total 6 course you have started
