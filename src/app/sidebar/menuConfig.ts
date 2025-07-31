@@ -4,7 +4,6 @@ import {
   BookOpen,
   ShieldCheck,
   Newspaper,
-  Video,
   MessageSquare,
   Youtube,
   BarChart,

@@ -4,7 +4,7 @@ import { Search, Funnel } from "lucide-react";
 
 const DashboardTopBar = () => {
   return (
-    <div className="flex items-center justify-between gap-4 px-4 py-4 bg-white rounded-lg">
+    <div className="flex items-center justify-between gap-4 px-4 py-4 mt-4 bg-white rounded-lg">
       {/* Centered Search Input */}
       <div className="flex justify-center w-full">
         <div className="w-full max-w-md">
@@ -15,7 +15,7 @@ const DashboardTopBar = () => {
             <Input
               type="text"
               placeholder="Search GuideBook / Ask GraceAI"
-              className="pl-10 text-sm border border-[#CFB16D] rounded-md"
+              className="pl-10 text-sm border h-10 border-[#CFB16D] rounded-md"
             />
           </div>
         </div>
@@ -26,7 +26,7 @@ const DashboardTopBar = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="flex  hover:bg-[#CFB16D] items-center gap-2 bg-white border-none"
+          className="flex hover:bg-[#CFB16D] items-center gap-2 bg-white border-none"
         >
           <Funnel className="w-4 h-4 text-gray-400" />
           Filter

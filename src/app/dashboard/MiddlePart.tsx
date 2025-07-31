@@ -17,7 +17,7 @@ const MiddlePart = () => {
                 Get the right professional certificate program for you.
               </p>
             </div>
-            <button className="mt-4 w-fit px-4 py-2 text-sm font-medium text-white bg-[#1A1A2E] rounded-md">
+            <button className="mt-12  w-fit px-4 py-2 text-sm font-medium text-white bg-[#1A1A2E] rounded-md">
               View Programs
             </button>
           </div>
@@ -39,7 +39,7 @@ const MiddlePart = () => {
                 Enroll now in the most popular and best rated courses.
               </p>
             </div>
-            <button className="mt-4 w-fit px-4 py-2 text-sm font-medium text-white bg-[#CFB16D] rounded-md">
+            <button className="mt-12 w-fit px-4 py-2 text-sm font-medium text-white bg-[#CFB16D] rounded-md">
               View Courses
             </button>
           </div>

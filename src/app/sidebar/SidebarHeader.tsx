@@ -3,10 +3,10 @@ import { Search } from "lucide-react";
 
 const SidebarHeader = () => {
   return (
-    <div className="flex flex-col items-center p-5 mt-4 space-y-2 text-center">
-      <div className="w-full p-1 text-left">
-        <h2 className="text-lg font-bold">Academy</h2>
-        <p className="mb-8 text-xs text-gray-500 text-muted-foreground">
+    <div className="flex flex-col items-center mt-4 space-y-2 text-center p-7">
+      <div className="w-full p-2 text-left">
+        <h2 className="text-lg font-bold text-gray-700">Academy</h2>
+        <p className="mb-8 text-sm text-gray-500 text-muted-foreground">
           Future Trends Catalyst - Academy
         </p>
       </div>
@@ -28,7 +28,7 @@ const SidebarHeader = () => {
         <Input
           type="search"
           placeholder="Search Academy"
-          className="w-full h-6 py-1 pl-10 text-sm"
+          className="w-full h-8 py-1 pl-10 text-sm"
         />
       </div>
     </div>
