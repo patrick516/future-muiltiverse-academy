@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import fvmAgency from "@/assets/images/fvm-agency.png";
 import fvmLeaders from "@/assets/images/fvm-leaders.png";
@@ -46,18 +47,37 @@ const academySections = [
 ];
 
 const AcademyContent = () => {
+  const [activeTab, setActiveTab] = useState("Trending");
+  const [activeAcademyTab, setActiveAcademyTab] = useState("Trending");
+
   return (
     <div className="mt-10 space-y-10">
       {/* FMV Courses */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-lg font-bold text-gray-900">FMV Courses</h3>
-          <div className="flex gap-3 text-sm text-gray-400">
-            <span className="text-[#CFB16D] font-medium">Trending</span>
-            <span>Featured</span>
-            <span className="cursor-pointer hover:underline">View All</span>
+          <div className="flex gap-6 text-sm font-medium">
+            {["Trending", "Featured", "View All"].map((label) => (
+              <button
+                key={label}
+                onClick={() => setActiveTab(label)}
+                className={`relative pb-1 transition ${
+                  activeTab === label ? "text-[#CFB16D]" : "text-[#1A1A2E]"
+                }`}
+              >
+                {label}
+                <span
+                  className={`absolute left-0 -bottom-0.5 w-full border-b ${
+                    activeTab === label
+                      ? "border-[#CFB16D]"
+                      : "border-[#1A1A2E]/50"
+                  } border-dashed`}
+                />
+              </button>
+            ))}
           </div>
         </div>
+        <hr />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {fmvCourses.map((course) => (
@@ -86,7 +106,33 @@ const AcademyContent = () => {
 
       {/* Academy Sections */}
       <div className="space-y-4">
-        <h3 className="text-lg font-bold text-gray-900">Academy Sections</h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-lg font-bold text-gray-900">Academy Sections</h3>
+          <div className="flex gap-6 text-sm font-medium">
+            {["Trending", "Featured", "View All"].map((label) => (
+              <button
+                key={label}
+                onClick={() => setActiveAcademyTab(label)}
+                className={`relative pb-1 transition ${
+                  activeAcademyTab === label
+                    ? "text-[#CFB16D]"
+                    : "text-[#1A1A2E]"
+                }`}
+              >
+                {label}
+                <span
+                  className={`absolute left-0 -bottom-0.5 w-full border-b ${
+                    activeAcademyTab === label
+                      ? "border-[#CFB16D]"
+                      : "border-[#1A1A2E]/50"
+                  } border-dashed`}
+                />
+              </button>
+            ))}
+          </div>
+        </div>
+        <hr />
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {academySections.map((section) => (
             <div
@@ -100,10 +146,10 @@ const AcademyContent = () => {
               />
               <div className="p-4 space-y-2">
                 <h4 className="font-semibold text-gray-900">{section.title}</h4>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-md text-muted-foreground">
                   {section.description}
                 </p>
-                <p className="text-sm font-medium text-[#CFB16D]">
+                <p className="text-md font-medium text-[#CFB16D]">
                   {section.cta}
                 </p>
               </div>
@@ -123,7 +169,7 @@ const AcademyContent = () => {
           <span className="mr-3 text-lg text-gray-400">←</span>
           <div className="flex flex-col ml-auto text-right">
             <span className="text-xs text-muted-foreground">Previous</span>
-            <span className="text-sm font-medium text-gray-900">GraceAI</span>
+            <span className="font-semibold text-gray-900 text-md">GraceAI</span>
           </div>
         </Link>
 
@@ -134,7 +180,7 @@ const AcademyContent = () => {
         >
           <div className="flex flex-col">
             <span className="text-xs text-muted-foreground">Next</span>
-            <span className="text-sm font-medium text-[#CFB16D]">
+            <span className="text-md font-semibold text-[#CFB16D]">
               Official News & Updates
             </span>
           </div>
