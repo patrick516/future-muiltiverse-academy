@@ -5,6 +5,7 @@ import HomePage from "@/app/home/HomePage";
 import DashboardPage from "@/app/dashboard/page";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CoursesPage from "@/app/courses/page";
+import OverviewPage from "@/app/dashboard/OverviewPage";
 // import CourseDetailPage from "@/app/courses/CourseDetailPage";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             {/* <Route path="/courses/:slug" element={<CourseDetailPage />} /> */}
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/overview" element={<OverviewPage />} />
           </Routes>
         </ScrollArea>
       </main>

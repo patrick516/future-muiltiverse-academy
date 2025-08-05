@@ -17,7 +17,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
     setOpen((prev) => !prev);
   };
 
-  // SECTION HEADERS
+  // Render section headers like "Welcome", "Resources & Knowledge"
   if (item.type === "section") {
     return (
       <div className="mt-5">
@@ -29,10 +29,18 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
             <Link
               key={child.path}
               to={child.path!}
-              className="flex items-center justify-between px-4 py-1.5 text-sm text-gray-700 hover:text-black rounded-sm hover:bg-[#CFB16D] transition"
+              className="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-700 hover:text-black rounded-sm hover:bg-[#CFB16D] transition"
             >
+              {/* Render icon */}
+              {child.icon &&
+                (typeof child.icon === "string" ? (
+                  <img src={child.icon} alt={child.label} className="w-4 h-4" />
+                ) : (
+                  React.createElement(child.icon, {
+                    className: "w-4 h-4 text-[#CFB16D]",
+                  })
+                ))}
               <span>{child.label}</span>
-              <span className="text-xs text-gray-400">›</span>
             </Link>
           ))}
         </div>
@@ -85,15 +93,23 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
 
       {/* Children items */}
       {!collapsed && hasChildren && open && (
-        <div className="ml-6 space-y-[2px]">
+        <div className="ml-2 space-y-[2px]">
           {item.children!.map((child) => (
             <Link
               key={child.path}
               to={child.path!}
-              className="flex items-center justify-between px-2.5 py-1 text-sm text-gray-600 hover:text-black hover:bg-gray-100 transition rounded-md"
+              className="flex items-center gap-2 px-2.5 py-1 text-sm text-gray-600 hover:text-[#CFB16D] pl-10 transition rounded-md"
             >
+              {/* Render child icon */}
+              {child.icon &&
+                (typeof child.icon === "string" ? (
+                  <img src={child.icon} alt={child.label} className="w-4 h-4" />
+                ) : (
+                  React.createElement(child.icon, {
+                    className: "w-4 h-4 text-gray-600",
+                  })
+                ))}
               <span>{child.label}</span>
-              <span className="text-xs text-gray-400">›</span>
             </Link>
           ))}
         </div>

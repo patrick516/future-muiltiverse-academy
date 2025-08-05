@@ -4,9 +4,10 @@ import {
   BookOpen,
   ShieldCheck,
   Newspaper,
-  MessageSquare,
+  MessageSquareMore,
   Youtube,
   BarChart,
+  Blend,
 } from "lucide-react";
 
 import type { MenuItem } from "./Sidebar.types";
@@ -36,14 +37,14 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         label: "Overview",
-        icon: BarChart,
+        icon: Blend,
         path: "/dashboard/overview",
       },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/dashboard/reports",
-      },
+      // {
+      //   label: "Reports",
+      //   icon: BarChart,
+      //   path: "/dashboard/reports",
+      // },
     ],
   },
   {
@@ -122,27 +123,27 @@ export const menuItems: MenuItem[] = [
     children: [
       {
         label: "Add new chat",
-        icon: MessageSquare,
+        icon: MessageSquareMore,
         path: "/graceai/new",
       },
       {
         label: "Where do I find XYZ?",
-        icon: MessageSquare,
+        icon: MessageSquareMore,
         path: "/graceai/faq/1",
       },
       {
         label: "What is XYZ?",
-        icon: MessageSquare,
+        icon: MessageSquareMore,
         path: "/graceai/faq/2",
       },
       {
         label: "How does XYZ work?",
-        icon: MessageSquare,
+        icon: MessageSquareMore,
         path: "/graceai/faq/3",
       },
       {
         label: "Please tell me XYZ!",
-        icon: MessageSquare,
+        icon: MessageSquareMore,
         path: "/graceai/faq/4",
       },
     ],
