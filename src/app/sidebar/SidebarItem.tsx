@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import type { MenuItem } from "./Sidebar.types";
 
@@ -9,6 +9,10 @@ interface SidebarItemProps {
 }
 
 const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isActive = currentPath === item.path;
   const [open, setOpen] = useState(false);
   const hasChildren = !!item.children?.length;
 
@@ -17,7 +21,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
     setOpen((prev) => !prev);
   };
 
-  // Render section headers like "Welcome", "Resources & Knowledge"
+  // SECTION HEADERS
   if (item.type === "section") {
     return (
       <div className="mt-5">
@@ -31,7 +35,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
               to={child.path!}
               className="flex items-center gap-2 px-4 py-1.5 text-sm text-gray-700 hover:text-black rounded-sm hover:bg-[#CFB16D] transition"
             >
-              {/* Render icon */}
               {child.icon &&
                 (typeof child.icon === "string" ? (
                   <img src={child.icon} alt={child.label} className="w-4 h-4" />
@@ -51,10 +54,14 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
   return (
     <div className="space-y-0.5">
       {/* Main nav item */}
-      <div className="flex items-center justify-between px-3 py-1.5 rounded-sm transition">
+      <div className="flex items-center justify-between px-3 py-1.5 rounded-sm transition group">
         <Link to={item.path!} className="flex items-center gap-2">
           {item.icon && (
-            <div className="flex items-center justify-center w-8 h-8 bg-gray-100 rounded-md transition hover:bg-[#CFB16D] group">
+            <div
+              className={`flex items-center justify-center w-8 h-8 rounded-md transition 
+                ${isActive ? "bg-[#CFB16D]" : "bg-gray-100"} 
+                group-hover:bg-[#CFB16D]`}
+            >
               {typeof item.icon === "string" ? (
                 <img
                   src={item.icon}
@@ -66,6 +73,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
                   className: `w-4 h-4 ${
                     item.label === "Tutorial Videos"
                       ? "text-red-600"
+                      : isActive
+                      ? "text-white"
                       : "text-[#CFB16D]"
                   } group-hover:text-white`,
                 })
@@ -94,24 +103,35 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
       {/* Children items */}
       {!collapsed && hasChildren && open && (
         <div className="ml-2 space-y-[2px]">
-          {item.children!.map((child) => (
-            <Link
-              key={child.path}
-              to={child.path!}
-              className="flex items-center gap-2 px-2.5 py-1 text-sm text-gray-600 hover:text-[#CFB16D] pl-10 transition rounded-md"
-            >
-              {/* Render child icon */}
-              {child.icon &&
-                (typeof child.icon === "string" ? (
-                  <img src={child.icon} alt={child.label} className="w-4 h-4" />
-                ) : (
-                  React.createElement(child.icon, {
-                    className: "w-4 h-4 text-gray-600",
-                  })
-                ))}
-              <span>{child.label}</span>
-            </Link>
-          ))}
+          {item.children!.map((child) => {
+            const isChildRoute = currentPath === child.path;
+
+            return (
+              <Link
+                key={child.path}
+                to={child.path!}
+                className={`flex items-center gap-2 px-2.5 py-1 text-sm rounded-md transition ${
+                  isChildRoute
+                    ? "bg-gray-200 text-black"
+                    : "text-gray-600 hover:text-black hover:bg-gray-100"
+                }`}
+              >
+                {child.icon &&
+                  (typeof child.icon === "string" ? (
+                    <img
+                      src={child.icon}
+                      alt={child.label}
+                      className="w-4 h-4"
+                    />
+                  ) : (
+                    React.createElement(child.icon, {
+                      className: "w-4 h-4 text-[#CFB16D]",
+                    })
+                  ))}
+                <span>{child.label}</span>
+              </Link>
+            );
+          })}
         </div>
       )}
     </div>

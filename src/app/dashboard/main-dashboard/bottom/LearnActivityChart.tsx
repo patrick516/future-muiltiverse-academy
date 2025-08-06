@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Calendar } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import { format } from "date-fns";
 import { useState } from "react";
 
@@ -68,7 +68,7 @@ const LearnActivityChart = () => {
                 ) : (
                   "Select date range"
                 )}
-                <Calendar className="w-3 h-3" />
+                <CalendarDays className="w-4 h-4 ml-2 text-gray-400" />
               </button>
             }
           />
