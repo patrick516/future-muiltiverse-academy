@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+// no Link import needed now
 import academyImage from "@/assets/images/screen 1.png";
 
 const stats = [
@@ -25,12 +26,18 @@ const quickLinks = [
   "New Listings",
 ];
 
+const linkMap: Record<string, string | undefined> = {
+  Backoffice: "https://backoffice.futuremultiverse.dev/",
+  LaunchPad: "https://launchpad.futuremultiverse.dev/",
+  Marketplace: "https://marketplace.futuremultiverse.dev/",
+  "Enter & Experience": "https://futuremultiverse.dev/enter_and_experience",
+  "Connect / Onboard": "https://auth.futuremultiverse.com/",
+};
+
 const AcademyOverviewCard = () => {
   return (
     <div className="mt-5 space-y-6 rounded-md ">
-      {/* Main content row */}
       <div className="flex flex-col items-stretch gap-6 lg:flex-row md:flex-row">
-        {/* Left content */}
         <div className="flex-1 space-y-3">
           <h5 className="text-md font-semibold text-[#CFB16D]">
             <span>Home</span>
@@ -49,7 +56,6 @@ const AcademyOverviewCard = () => {
             real-time.
           </p>
 
-          {/* Stats row */}
           <div className="flex flex-wrap gap-3 pt-2">
             {stats.map((stat) => (
               <div
@@ -67,7 +73,6 @@ const AcademyOverviewCard = () => {
           </div>
         </div>
 
-        {/* Right image */}
         <div className="w-[300px] shrink-0 mr-12">
           <img
             src={academyImage}
@@ -77,19 +82,39 @@ const AcademyOverviewCard = () => {
         </div>
       </div>
 
-      {/* Quick Links */}
       <div className="flex flex-col space-y-3">
         <p className="text-lg font-bold text-gray-900">Quick Links</p>
         <div className="flex flex-wrap gap-4">
-          {quickLinks.map((link) => (
-            <Button
-              key={link}
-              variant="outline"
-              className="px-4 py-1 text-sm rounded-md border bg-white border-[#CFB16D] hover:bg-[#CFB16D] hover:text-white transition"
-            >
-              {link}
-            </Button>
-          ))}
+          {quickLinks.map((label) => {
+            const href = linkMap[label];
+
+            if (href) {
+              return (
+                <Button
+                  key={label}
+                  asChild
+                  variant="outline"
+                  className="px-4 py-1 text-sm rounded-md border bg-white border-[#CFB16D] hover:bg-[#CFB16D] hover:text-white transition"
+                >
+                  <a href={href} target="_blank" rel="noopener noreferrer">
+                    {label}
+                  </a>
+                </Button>
+              );
+            }
+
+            return (
+              <Button
+                key={label}
+                variant="outline"
+                disabled
+                title="Coming soon"
+                className="px-4 py-1 text-sm  hover:bg-white rounded-md border bg-white border-[#CFB16D] opacity-70 cursor-not-allowed  hover:text-inherit"
+              >
+                {label}
+              </Button>
+            );
+          })}
         </div>
       </div>
     </div>

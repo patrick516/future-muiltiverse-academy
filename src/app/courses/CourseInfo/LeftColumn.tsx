@@ -1,4 +1,3 @@
-import React from "react";
 import personImage from "@/assets/images/Avatar.png";
 import { Check, BookOpen, Users, Clock, Globe } from "lucide-react";
 

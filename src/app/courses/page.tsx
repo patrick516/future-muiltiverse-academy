@@ -1,5 +1,3 @@
-import React from "react";
-
 import DashboardTopBar from "@/app/constants/DashboardTopBar";
 import DashboardImage from "@/app/dashboard/DashboardImage";
 import CourseDetail from "./CourseDetails";

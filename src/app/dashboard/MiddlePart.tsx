@@ -1,4 +1,3 @@
-import React from "react";
 import blueAvatar from "@/assets/images/certificate-logo.png";
 import pinkAvatar from "@/assets/images/courses.png";
 

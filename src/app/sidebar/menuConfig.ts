@@ -7,7 +7,6 @@ import {
   MessageSquareMore,
   Youtube,
   BarChart,
-  Blend,
 } from "lucide-react";
 
 import type { MenuItem } from "./Sidebar.types";
@@ -35,11 +34,6 @@ export const menuItems: MenuItem[] = [
     icon: LayoutDashboard,
     path: "/dashboard",
     children: [
-      {
-        label: "Overview",
-        icon: Blend,
-        path: "/dashboard/overview",
-      },
       // {
       //   label: "Reports",
       //   icon: BarChart,
@@ -53,17 +47,13 @@ export const menuItems: MenuItem[] = [
     path: "/courses",
     children: [
       {
-        label: "Overview",
-        icon: BarChart,
+        label: "FMV Sales Agent / Agency",
+
         path: "/courses/overview",
-      },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/courses/reports",
       },
     ],
   },
+
   {
     label: "VIP Member Area",
     icon: ShieldCheck,

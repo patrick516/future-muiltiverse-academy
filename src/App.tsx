@@ -6,6 +6,9 @@ import DashboardPage from "@/app/dashboard/page";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import CoursesPage from "@/app/courses/page";
 import OverviewPage from "@/app/dashboard/OverviewPage";
+import AcademyDetail from "@/app/academy/AcademyDetail";
+import QuickLinkPage from "@/app/quicklinks/QuickLinkPage";
+
 // import CourseDetailPage from "@/app/courses/CourseDetailPage";
 
 function App() {
@@ -20,10 +23,16 @@ function App() {
       <main className="flex-1 p-6 bg-white">
         <ScrollArea className="w-full h-full">
           <Routes>
-            <Route path="/courses" element={<CoursesPage />} />
-            {/* <Route path="/courses/:slug" element={<CourseDetailPage />} /> */}
+            <Route path="/academy/item/:id" element={<AcademyDetail />} />
+
+            <Route path="/courses" element={<OverviewPage />} />
+
+            <Route path="/courses/overview" element={<CoursesPage />} />
+
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/quick/:slug" element={<QuickLinkPage />} />
+
             <Route path="/dashboard/overview" element={<OverviewPage />} />
           </Routes>
         </ScrollArea>

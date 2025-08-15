@@ -1,50 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import fvmAgency from "@/assets/images/fvm-agency.png";
-import fvmLeaders from "@/assets/images/fvm-leaders.png";
-import fvmManage from "@/assets/images/fvm-manage.png";
-
-const fmvCourses = [
-  {
-    title: "FMV Sales Agent / Agency",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Enter & Experience →",
-    image: fvmAgency,
-  },
-  {
-    title: "FMV Sales Leader",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Explore →",
-    image: fvmLeaders,
-  },
-  {
-    title: "FMV Sales Manager",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Explore →",
-    image: fvmManage,
-  },
-];
-
-const academySections = [
-  {
-    title: "Info Material Package",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Learn More →",
-    image: fvmAgency,
-  },
-  {
-    title: "Official News & Updates",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Learn More →",
-    image: fvmLeaders,
-  },
-  {
-    title: "Tutorials",
-    description: "Metronic theme covers only the frontend part issues.",
-    cta: "Learn More →",
-    image: fvmManage,
-  },
-];
+import { fmvCourses, academySections } from "@/data/academy";
 
 const AcademyContent = () => {
   const [activeTab, setActiveTab] = useState("Trending");
@@ -82,7 +38,7 @@ const AcademyContent = () => {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {fmvCourses.map((course) => (
             <div
-              key={course.title}
+              key={course.id}
               className="overflow-hidden bg-white border rounded-md shadow-sm"
             >
               <img
@@ -95,9 +51,12 @@ const AcademyContent = () => {
                 <p className="text-sm text-muted-foreground">
                   {course.description}
                 </p>
-                <p className="text-sm font-medium text-[#CFB16D]">
+                <Link
+                  to={`/academy/item/${course.id}`}
+                  className="text-sm font-medium text-[#CFB16D]"
+                >
                   {course.cta}
-                </p>
+                </Link>
               </div>
             </div>
           ))}
@@ -136,7 +95,7 @@ const AcademyContent = () => {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {academySections.map((section) => (
             <div
-              key={section.title}
+              key={section.id}
               className="overflow-hidden bg-white border rounded-md shadow-sm"
             >
               <img
@@ -146,22 +105,23 @@ const AcademyContent = () => {
               />
               <div className="p-4 space-y-2">
                 <h4 className="font-semibold text-gray-900">{section.title}</h4>
-                <p className="text-md text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   {section.description}
                 </p>
-                <p className="text-md font-medium text-[#CFB16D]">
+                <Link
+                  to={`/academy/item/${section.id}`}
+                  className="text-sm font-medium text-[#CFB16D] inline-flex items-center"
+                >
                   {section.cta}
-                </p>
+                </Link>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Pagination Footer */}
-
+      {/* Pagination Footer — unchanged */}
       <div className="flex flex-col justify-between gap-4 mt-10 md:flex-row">
-        {/* Previous */}
         <Link
           to="/graceai"
           className="flex items-center w-full px-6 py-4 transition bg-white border shadow-sm md:w-1/2 rounded-xl hover:bg-gray-50"
@@ -173,7 +133,6 @@ const AcademyContent = () => {
           </div>
         </Link>
 
-        {/* Next */}
         <Link
           to="/academy/news"
           className="flex justify-between w-full md:w-1/2 border rounded-xl px-6 py-4 shadow-sm bg-[#FAFAFA] transition hover:bg-gray-50"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import courseImage from "@/assets/images/Image.png";
 import { Play, Share2, Bookmark, BookmarkCheck } from "lucide-react";
 import LeftColumn from "./CourseInfo/LeftColumn";
