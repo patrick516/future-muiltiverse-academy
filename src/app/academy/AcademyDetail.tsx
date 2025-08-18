@@ -1,4 +1,3 @@
-// src/app/academy/AcademyDetail.tsx
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { getAcademyItem } from "@/data/academy";

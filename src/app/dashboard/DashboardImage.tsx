@@ -9,10 +9,8 @@ const DashboardImage = () => {
         backgroundImage: `url(${fvmAgency})`,
       }}
     >
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center text-white">
         <h1 className="max-w-3xl text-2xl font-bold md:text-3xl lg:text-4xl">
           Education, talents, and career opportunities.{" "}
@@ -25,14 +23,14 @@ const DashboardImage = () => {
         </p>
 
         <div className="relative mt-6 w-[200px] md:w-[250px]">
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <Search className="w-5 h-5 mr-2 text-gray-500" />
-            <span className="text-gray-500">Search Courses</span>
+          <div className="absolute inset-y-0 flex items-center pointer-events-none left-3">
+            <Search className="w-5 h-5 ml-6 text-gray-400" />
           </div>
+
           <input
             type="text"
-            placeholder=""
-            className="w-full h-8 md:h-8 rounded-md shadow-md text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-[#CFB16D] text-center"
+            placeholder="Search Courses"
+            className="w-full h-8 md:h-8 pl-10 pr-3 rounded-md shadow-md text-center text-gray-600 bg-white focus:outline-none focus:ring-2 focus:ring-[#CFB16D]"
           />
         </div>
       </div>

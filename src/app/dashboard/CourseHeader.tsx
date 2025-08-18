@@ -11,7 +11,6 @@ import {
 const CourseHeader = () => {
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 mb-4 ">
-      {/* Left Section */}
       <div className="">
         <h2 className="text-xl font-bold text-gray-700">My Courses</h2>
         <p className="text-sm text-gray-500 text-muted-foreground">
@@ -19,9 +18,7 @@ const CourseHeader = () => {
         </p>
       </div>
 
-      {/* Right Filters */}
       <div className="flex items-center gap-4">
-        {/* Dropdown */}
         <Select>
           <SelectTrigger className="w-[150px] h-8 text-sm ">
             <SelectValue placeholder="All Courses" />
@@ -34,11 +31,10 @@ const CourseHeader = () => {
           </SelectContent>
         </Select>
 
-        {/* Toggle */}
         <div className="flex items-center gap-2 ">
           <Switch
             id="hide-completed"
-            className="data-[state=checked]:bg-black"
+            className="data-[state=checked]:bg-gray-800"
           />
           <Label htmlFor="hide-completed" className="text-sm ">
             Hide completed

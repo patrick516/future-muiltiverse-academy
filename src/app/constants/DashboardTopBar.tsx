@@ -10,17 +10,29 @@ const DashboardTopBar = () => {
         <div className="flex justify-center w-full">
           <div className="w-[300px]">
             <div className="relative">
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <Search className="w-4 h-4 mr-2 text-gray-500" />
-                <span className="text-sm text-gray-400">
-                  Search GuideBook / Ask GraceAI
-                </span>
-              </div>
+              {/* Input first (as the peer) */}
               <Input
                 type="text"
-                placeholder=""
-                className="h-10 text-sm text-center border border-[#CFB16D] rounded-md"
+                placeholder=" "
+                aria-label="Search GuideBook or ask GraceAI"
+                className="peer h-10 w-full text-center text-sm border border-[#CFB16D] rounded-md"
               />
+
+              {/* Centered overlay: icon + text */}
+              <div
+                className="
+          pointer-events-none absolute inset-0 flex items-center justify-center
+          text-sm text-gray-500
+          transition-opacity duration-150
+          peer-focus:opacity-0
+          peer-[&:not(:placeholder-shown)]:opacity-0
+        "
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Search className="w-4 h-4" />
+                  <span>Search GuideBook / Ask GraceAI</span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
