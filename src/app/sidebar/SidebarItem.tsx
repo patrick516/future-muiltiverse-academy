@@ -112,7 +112,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
 
             <button
               onClick={rowHasChildren ? toggleRow : undefined}
-              className="mr-2 text-gray-300 hover:text-[#CFB16D]"
+              className="mr-2 text-gray-300  hover:text-[#CFB16D]"
               aria-label={
                 rowHasChildren ? (rowOpen ? "Collapse" : "Expand") : "Navigate"
               }
@@ -127,14 +127,14 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
           </div>
 
           {!collapsed && rowHasChildren && rowOpen && (
-            <div className="mt-1 ml-6 space-y-[2px]">
+            <div className="mt-1  ml-6 space-y-[2px]">
               {node.children!.map((leaf) => {
                 const isLeafActive = leaf.path && currentPath === leaf.path;
                 return (
                   <Link
                     key={leaf.path}
                     to={leaf.path!}
-                    className={`flex items-center gap-2 px-3 py-1 text-sm rounded-md transition ${
+                    className={`flex items-center gap-2 px-3  py-1 text-sm rounded-md transition ${
                       isLeafActive
                         ? "text-[#CFB16D]"
                         : "text-gray-600 hover:text-[#CFB16D]"
@@ -231,7 +231,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, collapsed }) => {
 
       {/* Children items */}
       {!collapsed && hasChildren && open && (
-        <div className="ml-10 space-y-[2px]">
+        <div className="ml-5   space-y-[2px]">
           {item.children!.map((child) => {
             const isChildRoute = currentPath === child.path;
 

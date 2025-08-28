@@ -6,7 +6,7 @@ import {
   ArrowRight,
   Check,
   RotateCcw,
-  BookOpen,
+  BookOpenText,
 } from "lucide-react";
 
 export interface CourseCardProps {
@@ -68,8 +68,8 @@ const CourseCard = ({
         <div>
           <div className="flex items-center gap-2">
             {isInProgress && (
-              <BookOpen
-                className="w-4 h-4 text-gray-800"
+              <BookOpenText
+                className="w-5 h-4 text-[#CFB16D]"
                 aria-hidden="true"
                 strokeWidth={2}
               />

@@ -1,15 +1,22 @@
 import {
   Home,
   LayoutDashboard,
-  BookOpen,
   ShieldCheck,
+  BookOpenText,
   Newspaper,
   MessageSquareMore,
   Youtube,
   BarChart,
 } from "lucide-react";
 
+import { coursePages } from "@/app/courses/courseContent";
 import type { MenuItem } from "./Sidebar.types";
+import BookGlyph from "./BookGlyph";
+const courseChildren: MenuItem[] = coursePages.map((c) => ({
+  label: c.title,
+  path: `/courses/${c.slug}`,
+  icon: BookGlyph,
+}));
 
 export const menuItems: MenuItem[] = [
   {
@@ -17,16 +24,8 @@ export const menuItems: MenuItem[] = [
     icon: Home,
     path: "/",
     children: [
-      {
-        label: "Overview",
-        icon: BarChart,
-        path: "/dashboard/overviews",
-      },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/dashboard/report",
-      },
+      { label: "Overview", icon: BarChart, path: "/dashboard/overviews" },
+      { label: "Reports", icon: BarChart, path: "/dashboard/report" },
     ],
   },
   {
@@ -34,18 +33,16 @@ export const menuItems: MenuItem[] = [
     icon: LayoutDashboard,
     path: "/dashboard",
     children: [
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/dashboard/reportss",
-      },
+      { label: "Reports", icon: BarChart, path: "/dashboard/reportss" },
     ],
   },
+
+  // Dynamic Courses (uses BookGlyph for parent and each course)
   {
-    label: "My Courses",
-    icon: BookOpen,
+    label: "Courses",
+    icon: BookOpenText,
     path: "/courses",
-    children: [],
+    children: courseChildren,
   },
 
   {
@@ -53,16 +50,8 @@ export const menuItems: MenuItem[] = [
     icon: ShieldCheck,
     path: "/vip",
     children: [
-      {
-        label: "Overview",
-        icon: BarChart,
-        path: "/vip/overview",
-      },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/vip/reports",
-      },
+      { label: "Overview", icon: BarChart, path: "/vip/overview" },
+      { label: "Reports", icon: BarChart, path: "/vip/reports" },
     ],
   },
   {
@@ -70,16 +59,8 @@ export const menuItems: MenuItem[] = [
     icon: Newspaper,
     path: "/news-and-updates",
     children: [
-      {
-        label: "Overview",
-        icon: BarChart,
-        path: "/news/overview",
-      },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/news/reports",
-      },
+      { label: "Overview", icon: BarChart, path: "/news/overview" },
+      { label: "Reports", icon: BarChart, path: "/news/reports" },
     ],
   },
   {
@@ -87,29 +68,17 @@ export const menuItems: MenuItem[] = [
     icon: Youtube,
     path: "/tutorial-videos",
     children: [
-      {
-        label: "Overview",
-        icon: BarChart,
-        path: "/tutorials/overview",
-      },
-      {
-        label: "Reports",
-        icon: BarChart,
-        path: "/tutorials/reports",
-      },
+      { label: "Overview", icon: BarChart, path: "/tutorials/overview" },
+      { label: "Reports", icon: BarChart, path: "/tutorials/reports" },
     ],
   },
 
   {
     label: "GraceAI",
-    icon: "/images/grace.svg",
+    icon: "/images/grace.svg", // keep string icon as-is
     path: "/graceai",
     children: [
-      {
-        label: "Add new chat",
-        icon: MessageSquareMore,
-        path: "/graceai/new",
-      },
+      { label: "Add new chat", icon: MessageSquareMore, path: "/graceai/new" },
       {
         label: "Where do I find XYZ?",
         icon: MessageSquareMore,

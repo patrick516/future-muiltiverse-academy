@@ -1,4 +1,3 @@
-// src/app/sidebar/Sidebar.tsx
 import React, { useMemo } from "react";
 import { menuItems as baseMenu } from "./menuConfig";
 import SidebarItem from "./SidebarItem";
@@ -6,6 +5,7 @@ import SidebarHeader from "./SidebarHeader";
 import type { MenuItem } from "./Sidebar.types";
 import { allCourses } from "@/app/dashboard/data/courses";
 import { slugify } from "@/lib/utils";
+import BookGlyph from "./BookGlyph";
 
 const Sidebar: React.FC = () => {
   const startedChildren: MenuItem[] = useMemo(() => {
@@ -15,7 +15,8 @@ const Sidebar: React.FC = () => {
 
     return started.map((c) => ({
       label: c.title,
-      path: `/courses/${slugify(c.title)}`, // <-- slug route
+      path: `/courses/${slugify(c.title)}`,
+      icon: BookGlyph,
     }));
   }, []);
 

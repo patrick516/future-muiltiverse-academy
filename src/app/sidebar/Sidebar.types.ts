@@ -1,9 +1,16 @@
-import type { LucideIcon } from "lucide-react";
+import type { LucideIcon, LucideProps } from "lucide-react";
+import type { ComponentType } from "react";
 
-export interface MenuItem {
+// props that BookGlyph accepts
+export type BookGlyphProps = {
+  size?: number;
+  className?: string;
+};
+
+export type MenuItem = {
   label: string;
   path?: string;
-  icon?: LucideIcon | string;
+  icon?: string | LucideIcon | ComponentType<LucideProps | BookGlyphProps>;
   type?: "section";
   children?: MenuItem[];
-}
+};
