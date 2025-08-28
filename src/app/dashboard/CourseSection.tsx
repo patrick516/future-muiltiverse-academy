@@ -1,15 +1,31 @@
-"use client";
 import CourseHeader from "./CourseHeader";
 import CourseGrid from "./CourseGrid";
 
-const CourseSection = () => {
+type Props = {
+  hideCompleted: boolean;
+  onToggleHideCompleted: (checked: boolean) => void;
+  selectedCourseSlug: string; // "all" or a slug
+  onChangeCourse: (slug: string) => void;
+};
+
+const CourseSection = ({
+  hideCompleted,
+  onToggleHideCompleted,
+  selectedCourseSlug,
+  onChangeCourse,
+}: Props) => {
   return (
-    <div
-      className="p-6  bg-white border-2 border-gray-200 rounded-lg shadow-[0_0_24px_rgba(0,0,0,0.05)]
-"
-    >
-      <CourseHeader />
-      <CourseGrid />
+    <div>
+      <CourseHeader
+        hideCompleted={hideCompleted}
+        onToggleHideCompleted={onToggleHideCompleted}
+        selectedCourseSlug={selectedCourseSlug}
+        onChangeCourse={onChangeCourse}
+      />
+      <CourseGrid
+        hideCompleted={hideCompleted}
+        selectedCourseSlug={selectedCourseSlug}
+      />
     </div>
   );
 };

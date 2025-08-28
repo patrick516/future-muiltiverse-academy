@@ -1,63 +1,72 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import type { CourseContent } from "../courseContent";
 
-const lessons = [
-  { title: "1. Welcome to this course", time: "2.4 min" },
-  { title: "2. Watch before you start", time: "4.8 min" },
-  { title: "3. Basic design theory", time: "5.9 min" },
-  { title: "4. Basic fundamentals", time: "3.6 min" },
-  { title: "5. What is ui/ux", time: "10.6 min" },
-];
+// helper: sum lesson durations → "4.4 min"
+function toMinutesLabel(durations: string[]): string {
+  const totalMins = durations.reduce((sum, s) => {
+    const parts = s.split(":").map((n) => Number(n));
+    if (parts.length === 2 && !parts.some(Number.isNaN)) {
+      const [m, sec] = parts;
+      return sum + m + sec / 60;
+    }
+    const n = Number(String(s).replace(/[^\d.]/g, ""));
+    return sum + (Number.isFinite(n) ? n : 0);
+  }, 0);
+  return `${(Math.round(totalMins * 10) / 10).toFixed(1)} min`;
+}
 
-const sections = [
-  {
-    title: "Course Content",
-    total: 5,
-    duration: "4.4 min",
-    isCollapsible: true,
-  },
-  {
-    title: "Web Design for Developers",
-    total: 4,
-    duration: "4.4 min",
-  },
-  {
-    title: "Build Beautiful Websites!",
-    total: 6,
-    duration: "4.4 min",
-  },
-  {
-    title: "Build Beautiful Websites!",
-    total: 6,
-    duration: "4.4 min",
-  },
-  {
-    title: "Final Project",
-    total: 3,
-    duration: "4.4 min",
-  },
-];
+type Props = { course: CourseContent };
 
-export default function RightColumn() {
-  const [checked, setChecked] = useState<boolean[]>(
-    new Array(lessons.length).fill(false)
+export default function RightColumn({ course }: Props) {
+  // Build sections (chapters) from the course
+  const sections = useMemo(
+    () =>
+      course.curriculum.map((sec) => ({
+        title: sec.title,
+        total: sec.items.length,
+        duration: toMinutesLabel(sec.items.map((it) => it.duration)),
+        items: sec.items.map((it, i) => ({
+          title: `${i + 1}. ${it.title}`,
+          // display like "4.8 min"
+          time: (() => {
+            const [m, s] = it.duration.split(":").map((n) => Number(n));
+            if (!Number.isNaN(m) && !Number.isNaN(s)) {
+              const v = Math.round((m + s / 60) * 10) / 10;
+              return `${v} min`;
+            }
+            return it.duration;
+          })(),
+          completed: !!it.completed,
+        })),
+      })),
+    [course]
   );
+
+  // One open section at a time — default to the first (chapter 1)
   const [openSection, setOpenSection] = useState<string | null>(
-    "Course Content"
+    sections[0]?.title ?? null
   );
 
-  const toggleCheck = (i: number) => {
-    setChecked((prev) => {
-      const updated = [...prev];
-      updated[i] = !updated[i];
-      return updated;
-    });
+  // Checkbox state per section
+  const [checks, setChecks] = useState<boolean[][]>(
+    sections.map((sec) => sec.items.map((it) => it.completed ?? false))
+  );
+
+  const toggleCheck = (secIdx: number, itemIdx: number) => {
+    setChecks((prev) =>
+      prev.map((row, i) =>
+        i !== secIdx ? row : row.map((v, j) => (j === itemIdx ? !v : v))
+      )
+    );
   };
 
   return (
+    // ⬇️ keep your exact Tailwind & structure
     <div className="w-full md:max-w-[320px] lg:max-w-[360px] mx-auto flex flex-col gap-[1px]">
       {sections.map((section, i) => {
         const isOpen = openSection === section.title;
+        const completedCount = checks[i]?.filter(Boolean).length ?? 0;
 
         return (
           <div
@@ -72,11 +81,7 @@ export default function RightColumn() {
           >
             {/* Section Header */}
             <button
-              onClick={() =>
-                section.isCollapsible
-                  ? setOpenSection(isOpen ? null : section.title)
-                  : null
-              }
+              onClick={() => setOpenSection(isOpen ? null : section.title)}
               className="w-full text-left bg-[#CFB16D] px-4 py-3"
             >
               <div className="flex items-start justify-between">
@@ -85,17 +90,12 @@ export default function RightColumn() {
                     {section.title}
                   </p>
                   <p className="mt-1 text-xs text-gray-700">
-                    {checked.filter(Boolean).length} / {section.total} |{" "}
-                    {section.duration}
+                    {completedCount} / {section.total} | {section.duration}
                   </p>
                 </div>
                 <div className="pt-1">
-                  {section.isCollapsible ? (
-                    isOpen ? (
-                      <ChevronDown size={18} />
-                    ) : (
-                      <ChevronRight size={18} />
-                    )
+                  {isOpen ? (
+                    <ChevronDown size={18} />
                   ) : (
                     <ChevronRight size={18} />
                   )}
@@ -103,18 +103,18 @@ export default function RightColumn() {
               </div>
             </button>
 
-            {/* Lesson Items - only for open collapsible section */}
-            {section.isCollapsible && isOpen && (
+            {/* Lessons for the OPEN chapter only (with checkboxes) */}
+            {isOpen && (
               <div className="bg-white divide-y ">
-                {lessons.map((lesson, idx) => (
+                {section.items.map((lesson, idx) => (
                   <label
                     key={idx}
                     className="flex items-start gap-2 px-4 py-3 cursor-pointer"
                   >
                     <input
                       type="checkbox"
-                      checked={checked[idx]}
-                      onChange={() => toggleCheck(idx)}
+                      checked={!!checks[i]?.[idx]}
+                      onChange={() => toggleCheck(i, idx)}
                       className="mt-1 w-4 h-4 accent-[#27231a] rounded-lg "
                     />
                     <div className="flex flex-col">

@@ -24,15 +24,13 @@ function App() {
         <ScrollArea className="w-full h-full">
           <Routes>
             <Route path="/academy/item/:id" element={<AcademyDetail />} />
-
             <Route path="/courses" element={<OverviewPage />} />
-
             <Route path="/courses/overview" element={<CoursesPage />} />
-
+            <Route path="/courses/:slug" element={<CoursesPage />} />{" "}
+            <Route path="/courses/:slug" element={<CoursesPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/quick/:slug" element={<QuickLinkPage />} />
-
             <Route path="/dashboard/overview" element={<OverviewPage />} />
           </Routes>
         </ScrollArea>

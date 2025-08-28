@@ -20,12 +20,12 @@ export const menuItems: MenuItem[] = [
       {
         label: "Overview",
         icon: BarChart,
-        path: "/dashboard/overview",
+        path: "/dashboard/overviews",
       },
       {
         label: "Reports",
         icon: BarChart,
-        path: "/dashboard/reports",
+        path: "/dashboard/report",
       },
     ],
   },
@@ -34,24 +34,18 @@ export const menuItems: MenuItem[] = [
     icon: LayoutDashboard,
     path: "/dashboard",
     children: [
-      // {
-      //   label: "Reports",
-      //   icon: BarChart,
-      //   path: "/dashboard/reports",
-      // },
+      {
+        label: "Reports",
+        icon: BarChart,
+        path: "/dashboard/reportss",
+      },
     ],
   },
   {
     label: "My Courses",
     icon: BookOpen,
     path: "/courses",
-    children: [
-      {
-        label: "FMV Sales Agent / Agency",
-
-        path: "/courses/overview",
-      },
-    ],
+    children: [],
   },
 
   {

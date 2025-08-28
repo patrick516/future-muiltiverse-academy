@@ -30,7 +30,7 @@ export const QUICK_LINKS: QuickLink[] = [
     url: "https://futuremultiverse.dev/enter_and_experience",
   },
   {
-    label: "Connect / Onboard",
+    label: "Connect / Onboard", 
     slug: "connect-onboard",
     type: "external",
     url: "https://auth.futuremultiverse.com/",

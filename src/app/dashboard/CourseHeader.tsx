@@ -7,36 +7,55 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { coursePages } from "@/app/courses/courseContent";
 
-const CourseHeader = () => {
+type Props = {
+  hideCompleted: boolean;
+  onToggleHideCompleted: (checked: boolean) => void;
+  selectedCourseSlug: string; // "all" or a course slug
+  onChangeCourse: (slug: string) => void;
+};
+
+const CourseHeader = ({
+  hideCompleted,
+  onToggleHideCompleted,
+  selectedCourseSlug,
+  onChangeCourse,
+}: Props) => {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 mb-4 ">
-      <div className="">
+    <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+      <div>
         <h2 className="text-xl font-bold text-gray-700">My Courses</h2>
         <p className="text-sm text-gray-500 text-muted-foreground">
-          Total 6 course you have started
+          Total {coursePages.length} course(s) available
         </p>
       </div>
 
       <div className="flex items-center gap-4">
-        <Select>
-          <SelectTrigger className="w-[150px] h-8 text-sm ">
+        {/* Available courses dropdown */}
+        <Select value={selectedCourseSlug} onValueChange={onChangeCourse}>
+          <SelectTrigger className="w-[220px] h-8 text-sm">
             <SelectValue placeholder="All Courses" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Courses</SelectItem>
-            <SelectItem value="uiux">UI/UX</SelectItem>
-            <SelectItem value="webdev">Web Development</SelectItem>
-            <SelectItem value="marketing">Marketing</SelectItem>
+            {coursePages.map((c) => (
+              <SelectItem key={c.slug} value={c.slug}>
+                {c.title}
+              </SelectItem>
+            ))}
           </SelectContent>
         </Select>
 
-        <div className="flex items-center gap-2 ">
+        {/* Hide completed toggle */}
+        <div className="flex items-center gap-2">
           <Switch
             id="hide-completed"
             className="data-[state=checked]:bg-gray-800"
+            checked={hideCompleted}
+            onCheckedChange={onToggleHideCompleted}
           />
-          <Label htmlFor="hide-completed" className="text-sm ">
+          <Label htmlFor="hide-completed" className="text-sm">
             Hide completed
           </Label>
         </div>
