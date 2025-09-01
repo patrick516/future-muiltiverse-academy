@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
     return started.map((c) => ({
       label: c.title,
       path: `/courses/${slugify(c.title)}`,
-      icon: BookGlyph,
+      icon: BookGlyph, // ✅ React component
     }));
   }, []);
 

@@ -6,6 +6,7 @@ import DashboardTopBar from "@/app/constants/DashboardTopBar";
 import DashboardImage from "@/app/dashboard/DashboardImage";
 import CourseDetail from "./CourseDetails";
 // import CoursesCarousel from "@/app/academy/CoursesCarousel";
+
 import { getCourses } from "@/app/api/academy";
 
 type Tab = "trending" | "featured" | "all";
@@ -17,7 +18,6 @@ const CoursesPage = () => {
 
   const qc = useQueryClient();
 
- 
   useEffect(() => {
     if (active === "trending") {
       qc.prefetchQuery({

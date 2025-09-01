@@ -10,7 +10,7 @@ export type BookGlyphProps = {
 export type MenuItem = {
   label: string;
   path?: string;
-  icon?: string | LucideIcon | ComponentType<LucideProps | BookGlyphProps>;
+  icon?: string | LucideIcon | ComponentType<LucideProps> | ComponentType<BookGlyphProps>;
   type?: "section";
   children?: MenuItem[];
 };

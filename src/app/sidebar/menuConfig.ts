@@ -12,10 +12,11 @@ import {
 import { coursePages } from "@/app/courses/courseContent";
 import type { MenuItem } from "./Sidebar.types";
 import BookGlyph from "./BookGlyph";
+
 const courseChildren: MenuItem[] = coursePages.map((c) => ({
   label: c.title,
   path: `/courses/${c.slug}`,
-  icon: BookGlyph,
+  icon: BookGlyph, // ✅ React component
 }));
 
 export const menuItems: MenuItem[] = [
@@ -36,15 +37,12 @@ export const menuItems: MenuItem[] = [
       { label: "Reports", icon: BarChart, path: "/dashboard/reportss" },
     ],
   },
-
-  // Dynamic Courses (uses BookGlyph for parent and each course)
   {
-    label: "Courses",
+    label: "My Courses",
     icon: BookOpenText,
     path: "/courses",
     children: courseChildren,
   },
-
   {
     label: "VIP Member Area",
     icon: ShieldCheck,
@@ -72,36 +70,18 @@ export const menuItems: MenuItem[] = [
       { label: "Reports", icon: BarChart, path: "/tutorials/reports" },
     ],
   },
-
   {
     label: "GraceAI",
-    icon: "/images/grace.svg", // keep string icon as-is
+    icon: "/images/grace.svg", // ✅ string works fine
     path: "/graceai",
     children: [
       { label: "Add new chat", icon: MessageSquareMore, path: "/graceai/new" },
-      {
-        label: "Where do I find XYZ?",
-        icon: MessageSquareMore,
-        path: "/graceai/faq/1",
-      },
-      {
-        label: "What is XYZ?",
-        icon: MessageSquareMore,
-        path: "/graceai/faq/2",
-      },
-      {
-        label: "How does XYZ work?",
-        icon: MessageSquareMore,
-        path: "/graceai/faq/3",
-      },
-      {
-        label: "Please tell me XYZ!",
-        icon: MessageSquareMore,
-        path: "/graceai/faq/4",
-      },
+      { label: "Where do I find XYZ?", icon: MessageSquareMore, path: "/graceai/faq/1" },
+      { label: "What is XYZ?", icon: MessageSquareMore, path: "/graceai/faq/2" },
+      { label: "How does XYZ work?", icon: MessageSquareMore, path: "/graceai/faq/3" },
+      { label: "Please tell me XYZ!", icon: MessageSquareMore, path: "/graceai/faq/4" },
     ],
   },
-
   {
     label: "Welcome",
     type: "section",
@@ -114,19 +94,14 @@ export const menuItems: MenuItem[] = [
       { label: "FMRA", path: "/academy/fmra" },
     ],
   },
-
   {
     label: "Future Multiverse & EXPO Ecosystem",
     type: "section",
     children: [
-      {
-        label: "Future Multiverse Overview",
-        path: "/academy/ecosystem/overview",
-      },
+      { label: "Future Multiverse Overview", path: "/academy/ecosystem/overview" },
       { label: "Info Material Package", path: "/academy/ecosystem/info" },
     ],
   },
-
   {
     label: "Resources & Knowledge",
     type: "section",

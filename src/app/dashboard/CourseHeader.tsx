@@ -34,13 +34,28 @@ const CourseHeader = ({
       <div className="flex items-center gap-4">
         {/* Available courses dropdown */}
         <Select value={selectedCourseSlug} onValueChange={onChangeCourse}>
-          <SelectTrigger className="w-[220px] h-8 text-sm">
+          <SelectTrigger className="w-[220px] h-8 text-sm bg-white border border-[#EBDDBF] shadow-sm focus:ring-2 focus:ring-[#CFB16D]">
             <SelectValue placeholder="All Courses" />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">All Courses</SelectItem>
+          <SelectContent className="z-50 bg-white border border-[#EBDDBF] rounded-lg p-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] ring-1 ring-black/5">
+            <SelectItem
+              value="all"
+              className="px-3 py-2 text-sm text-gray-700 rounded-md
+             data-[highlighted]:bg-[#CFB16D]/10
+             data-[state=checked]:bg-[#CFB16D]/15 data-[state=checked]:text-gray-900
+             cursor-pointer"
+            >
+              All Courses
+            </SelectItem>
             {coursePages.map((c) => (
-              <SelectItem key={c.slug} value={c.slug}>
+              <SelectItem
+                key={c.slug}
+                value={c.slug}
+                className="px-3 py-2 text-sm text-gray-700 rounded-md
+               data-[highlighted]:bg-[#CFB16D]
+               data-[state=checked]:bg-[#CFB16D]/15 data-[state=checked]:text-gray-900
+               cursor-pointer"
+              >
                 {c.title}
               </SelectItem>
             ))}
