@@ -5,9 +5,7 @@ import toast from "react-hot-toast";
 
 import LeftColumn from "./CourseInfo/LeftColumn";
 import RightColumn from "./CourseInfo/RightColumn";
-import CourseOutline from "./CourseInfo/CourseOutline";
-
-import { coursePages, type CourseContent } from "./courseContent";
+import { coursePages, type CourseContent } from "./courseContent"; // <-- restore this
 
 const DEFAULT_SLUG = "sales-agent-agency";
 
@@ -16,10 +14,9 @@ const CourseDetail = () => {
   const [bookmarked, setBookmarked] = useState(false);
 
   const course: CourseContent = useMemo(() => {
-    return (
-      coursePages.find((c) => c.slug === slug) ??
-      coursePages.find((c) => c.slug === DEFAULT_SLUG)!
-    );
+    const bySlug = coursePages.find((c) => c.slug === slug);
+    const fallback = coursePages.find((c) => c.slug === DEFAULT_SLUG);
+    return bySlug ?? fallback ?? coursePages[0];
   }, [slug]);
 
   const onShare = async () => {
@@ -81,7 +78,7 @@ const CourseDetail = () => {
           </div>
         </div>
 
-        {/* Media (keeps layout; swaps image/video per course) */}
+        {/* Media */}
         <div className="relative p-1 overflow-hidden">
           {course.videoUrl?.endsWith(".mp4") ? (
             <video controls className="object-cover w-full rounded-lg h-96">
@@ -101,14 +98,13 @@ const CourseDetail = () => {
           </div>
         </div>
 
-        {/* Content grid: LEFT main + RIGHT gold outline + meta */}
+        {/* Content grid: LEFT main + RIGHT gold outline */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_360px] gap-6">
           {/* LEFT */}
           <LeftColumn course={course} />
 
           {/* RIGHT */}
           <div className="space-y-4">
-            <CourseOutline course={course} />
             <RightColumn course={course} />
           </div>
         </div>
