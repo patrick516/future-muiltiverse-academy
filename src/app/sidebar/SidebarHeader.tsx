@@ -1,12 +1,17 @@
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 
-const SidebarHeader = () => {
+interface SidebarHeaderProps {
+  value: string;
+  onChange: (v: string) => void;
+}
+
+const SidebarHeader: React.FC<SidebarHeaderProps> = ({ value, onChange }) => {
   return (
-    <div className="flex flex-col items-center px-6 pt-6 pb-2 mt-4 space-y-2 text-center">
-      <div className="w-full p-1 text-left">
+    <div className="flex flex-col items-center px-6 pt-6 pb-3 space-y-2 text-center bg-white">
+      <div className="w-full ml-2 text-left ">
         <h2 className="text-lg font-bold text-gray-700">Academy</h2>
-        <p className="mb-3 text-sm text-gray-500 text-muted-foreground">
+        <p className="mb-2 text-sm text-gray-500">
           Future Trends Catalyst - Academy
         </p>
       </div>
@@ -22,15 +27,20 @@ const SidebarHeader = () => {
       <p className="text-sm font-medium">Sub-Account XYZ</p>
 
       {/* Search Input with Icon */}
-      <div className="relative w-full px-2 pt-2 pb-0">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <Search className="w-4 h-4 mr-2 text-gray-500 text-muted-foreground" />
-          <span className="text-sm text-gray-500">Search Academy</span>
-        </div>
+      <div className="relative w-full px-2 pt-2 pb-1">
+        <Search className="absolute w-4 h-4 mt-1 ml-10 text-gray-500 -translate-y-1/2 pointer-events-none top-1/2" />
         <Input
           type="search"
-          placeholder=""
-          className="w-full h-8 py-1 text-sm text-center"
+          placeholder="Search Academy"
+          className="w-full h-8 py-1 pl-8 text-sm text-center
+                    [&::-webkit-search-cancel-button]:filter
+                    [&::-webkit-search-cancel-button]:invert
+                    [&::-webkit-search-cancel-button]:sepia
+                    [&::-webkit-search-cancel-button]:saturate-[10000%]
+                    [&::-webkit-search-cancel-button]:hue-rotate-[800deg]
+                    [&::-webkit-search-cancel-button]:cursor-pointer"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
       </div>
     </div>

@@ -37,7 +37,9 @@ const linkMap: Record<string, string | undefined> = {
 const AcademyOverviewCard = () => {
   return (
     <div className="mt-5 space-y-6 rounded-md ">
-      <div className="flex flex-col items-stretch gap-6 lg:flex-row md:flex-row">
+      {/* Top Section */}
+      <div className="flex flex-col items-stretch gap-6 md:flex-row lg:flex-row">
+        {/* Text Block */}
         <div className="flex-1 space-y-3">
           <h5 className="text-md font-semibold text-[#CFB16D]">
             <span>Home</span>
@@ -49,7 +51,7 @@ const AcademyOverviewCard = () => {
             Future Multiverse Academy
           </h2>
 
-          <p className="max-w-xl text-sm text-muted-foreground">
+          <p className="max-w-xl text-sm text-muted-foreground w-[85%]">
             Your GraceAI based Guide: Explore, Ask & Learn everything about the
             multi-dimensional Future Multiverse platform ecosystem, its
             applications, news, developments, partners, movement & offerings in
@@ -73,15 +75,17 @@ const AcademyOverviewCard = () => {
           </div>
         </div>
 
-        <div className="w-[300px] shrink-0 mr-12">
+        {/* Image Block */}
+        <div className="flex-shrink-0 w-full max-w-sm mr-12">
           <img
             src={academyImage}
             alt="Academy overview"
-            className="object-cover w-full h-full rounded-md"
+            className="object-cover w-full h-auto rounded-md"
           />
         </div>
       </div>
 
+      {/* Quick Links */}
       <div className="flex flex-col space-y-3">
         <p className="text-lg font-bold text-gray-900">Quick Links</p>
         <div className="flex flex-wrap gap-4">
@@ -109,7 +113,7 @@ const AcademyOverviewCard = () => {
                 variant="outline"
                 disabled
                 title="Coming soon"
-                className="px-4 py-1 text-sm  hover:bg-white rounded-md border bg-white border-[#CFB16D] opacity-70 cursor-not-allowed  hover:text-inherit"
+                className="px-4 py-1 text-sm hover:bg-white rounded-md border bg-white border-[#CFB16D] opacity-70 cursor-not-allowed hover:text-inherit"
               >
                 {label}
               </Button>

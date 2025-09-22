@@ -78,5 +78,16 @@
 
 .react-datepicker__day:hover {
   background-color: #cfb16d !important;
-  color: #1f2937 !important; /* Tailwind gray-800 */
+  color: #1f2937 !important;
+}
+
+/* Hide scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }

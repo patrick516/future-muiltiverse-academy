@@ -110,7 +110,7 @@ const CourseCard = ({
               variant="outline"
               size="sm"
               onClick={onStartOver}
-              className="w-full flex border border-gray-500 items-center justify-center gap-2 px-6 py-2 text-sm font-medium rounded-md hover:bg-[#CFB16D]"
+              className="w-full flex border border-gray-500 hover:text-white items-center justify-center gap-2 px-6 py-2 text-sm font-medium rounded-md hover:bg-[#CFB16D] hover:border-none"
             >
               <RotateCcw size={16} aria-hidden="true" /> Start Over
             </Button>
@@ -120,7 +120,7 @@ const CourseCard = ({
             <Button
               variant="outline"
               size="sm"
-              className="px-6 py-2 border border-gray-500 text-sm font-medium rounded-sm hover:bg-[#CFB16D]"
+              className="px-6 py-2 border border-gray-500 text-sm font-medium rounded-sm hover:text-white hover:bg-[#CFB16D] hover:border-none"
               onClick={onStartOver}
             >
               <RotateCcw size={16} aria-hidden="true" />
@@ -130,7 +130,7 @@ const CourseCard = ({
             <Button
               variant="ghost"
               size="sm"
-              className="flex items-center gap-1 px-6 py-2 text-sm font-medium rounded-sm hover:bg-[#CFB16D] border border-gray-500"
+              className="flex items-center gap-1 px-6 py-2 text-sm hover:text-white font-medium rounded-sm hover:bg-[#CFB16D] hover:border-none border border-gray-500"
               onClick={onContinue}
             >
               Continue <ArrowRight size={14} aria-hidden="true" />

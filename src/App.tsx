@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Sidebar from "@/app/sidebar/Sidebar";
@@ -10,32 +11,105 @@ import AcademyDetail from "@/app/academy/AcademyDetail";
 import QuickLinkPage from "@/app/quicklinks/QuickLinkPage";
 import CatalogPage from "@/app/courses/CatalogPage";
 
-// import CourseDetailPage from "@/app/courses/CourseDetailPage";
-
 function App() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-white">
       <Toaster position="top-center" reverseOrder={false} />
-      <aside className="bg-white w-72">
-        <ScrollArea className="w-full h-full">
-          <Sidebar />
-        </ScrollArea>
+
+      {/* Desktop sidebar */}
+      <aside className="bg-white w-72 border-r border-gray-200 hidden md:block">
+        <Sidebar />
       </aside>
-      <main className="flex-1 p-6 bg-white">
-        <ScrollArea className="w-full h-full">
-          <Routes>
-            <Route path="/academy/item/:id" element={<AcademyDetail />} />
-            <Route path="/courses" element={<OverviewPage />} />
-            <Route path="/courses/overview" element={<CoursesPage />} />
-            <Route path="/courses/:slug" element={<CoursesPage />} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/quick/:slug" element={<QuickLinkPage />} />
-            <Route path="/dashboard/overview" element={<OverviewPage />} />
-            <Route path="/courses/all" element={<CatalogPage />} />
-          </Routes>
+
+      {/* Main */}
+      <main className="flex-1 bg-white">
+        {/* Mobile top bar */}
+        <div className="md:hidden sticky top-0 z-40 flex items-center justify-between gap-2 p-4 border-b border-gray-200 bg-white/95 backdrop-blur">
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-300"
+            onClick={() => setMobileOpen(true)}
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+          <div className="flex-1 text-center font-medium">Future Academy</div>
+          <div className="h-10 w-10" />
+        </div>
+
+        {/* Page content */}
+        <ScrollArea className="w-full h-[calc(100vh-0px)] md:h-full p-0 md:p-0">
+          <div className="w-full max-w-screen-xl mx-auto px-3 sm:px-4 py-6 overflow-x-hidden">
+            <Routes>
+              <Route path="/academy/item/:id" element={<AcademyDetail />} />
+              <Route path="/courses" element={<OverviewPage />} />
+              <Route path="/courses/overview" element={<CoursesPage />} />
+              <Route path="/courses/:slug" element={<CoursesPage />} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/quick/:slug" element={<QuickLinkPage />} />
+              <Route path="/dashboard/overview" element={<OverviewPage />} />
+              <Route path="/courses/all" element={<CatalogPage />} />
+            </Routes>
+          </div>
         </ScrollArea>
       </main>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <div className="md:hidden">
+          <div
+            className="fixed inset-0 z-50 bg-black/40"
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-gray-200">
+              <span className="font-semibold">Menu</span>
+              <button
+                type="button"
+                aria-label="Close menu"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300"
+                onClick={() => setMobileOpen(false)}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto">
+              <Sidebar />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

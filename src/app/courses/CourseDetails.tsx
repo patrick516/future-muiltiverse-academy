@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 
 import LeftColumn from "./CourseInfo/LeftColumn";
 import RightColumn from "./CourseInfo/RightColumn";
-import { coursePages, type CourseContent } from "./courseContent"; // <-- restore this
+import { coursePages, type CourseContent } from "./courseContent";
 
 const DEFAULT_SLUG = "sales-agent-agency";
 
@@ -42,7 +42,7 @@ const CourseDetail = () => {
   };
 
   return (
-    <div className="p-4 space-y-6">
+    <div className="p-4 space-y-6 ">
       <div className="p-6 space-y-6 bg-white rounded-xl shadow-[0_0_20px_rgba(0,0,0,0.08)]">
         {/* Header */}
         <div className="flex flex-wrap items-center justify-between gap-3">

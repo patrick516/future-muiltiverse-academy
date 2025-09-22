@@ -9,7 +9,7 @@ import BottomPagination from "@/app/constants/BottomPagination";
 
 const MainDashboard = () => {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 w-full">
       <DashboardTopBar />
 
       {/* Top Section */}
@@ -36,7 +36,7 @@ const MainDashboard = () => {
       </div>
 
       {/* Middle Section */}
-      <div className="flex justify-center w-full px-4">
+      <div className="flex justify-center w-full px-3 sm:px-4">
         <div className="grid w-full max-w-6xl grid-cols-1 gap-5 lg:grid-cols-2">
           <RecommendedCourses />
           <ActiveLessons />
@@ -44,7 +44,7 @@ const MainDashboard = () => {
       </div>
       {/* Bottom Section */}
       <div className="flex justify-center w-full px-4">
-        <div className="w-full max-w-6xl">
+        <div className="w-full max-w-6xl mx-auto">
           <LearnActivityChart />
           <BottomPagination />
         </div>
