@@ -4,15 +4,8 @@ import { Search, Funnel } from "lucide-react";
 
 const DashboardTopBar = () => {
   return (
-    <div className="sticky top-0 z-30 bg-white/95 backdrop-blur">
-      <div
-        className="
-          mt-4 bg-white rounded-lg
-          flex flex-nowrap items-center justify-between
-          gap-1 px-2 py-3
-          md:gap-4 md:pl-4 md:pr-0 md:py-4
-        "
-      >
+    <div className="fixed top-0 left-0 z-30 w-full bg-white/95 backdrop-blur">
+      <div className="flex items-center justify-between gap-1 px-2 py-3 mt-4 bg-white rounded-lg flex-nowrap md:gap-4 md:pl-4 md:pr-0 md:py-4">
         {/* Centered Search Input */}
         <div className="flex justify-center flex-1 min-w-0">
           <div
