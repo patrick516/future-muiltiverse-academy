@@ -22,22 +22,22 @@ function App() {
   }, [mobileOpen]);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-white">
+    <div className="flex h-screen bg-white sm:h-screen sm:overflow-hidden">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* Desktop sidebar */}
-      <aside className="bg-white w-72 border-r border-gray-200 hidden md:block">
+      <aside className="hidden bg-white border-r border-gray-200 w-72 md:block">
         <Sidebar />
       </aside>
 
       {/* Main */}
       <main className="flex-1 bg-white">
         {/* Mobile top bar */}
-        <div className="md:hidden sticky top-0 z-40 flex items-center justify-between gap-2 p-4 border-b border-gray-200 bg-white/95 backdrop-blur">
+        <div className="sticky top-0 z-40 flex items-center justify-between gap-2 p-4 border-b border-gray-200 md:hidden bg-white/95 backdrop-blur">
           <button
             type="button"
             aria-label="Open menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-gray-300"
+            className="inline-flex items-center justify-center w-10 h-10 border border-gray-300 rounded-md"
             onClick={() => setMobileOpen(true)}
           >
             <svg
@@ -53,13 +53,13 @@ function App() {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-          <div className="flex-1 text-center font-medium">Future Academy</div>
-          <div className="h-10 w-10" />
+          <div className="flex-1 font-medium text-center">Future Academy</div>
+          <div className="w-10 h-10" />
         </div>
 
         {/* Page content */}
         <ScrollArea className="w-full h-[calc(100vh-0px)] md:h-full p-0 md:p-0">
-          <div className="w-full max-w-screen-xl mx-auto px-3 sm:px-4 py-6 overflow-x-hidden">
+          <div className="w-full max-w-screen-xl px-3 py-6 mx-auto overflow-x-hidden sm:px-4">
             <Routes>
               <Route path="/academy/item/:id" element={<AcademyDetail />} />
               <Route path="/courses" element={<OverviewPage />} />
@@ -82,13 +82,15 @@ function App() {
             className="fixed inset-0 z-50 bg-black/40"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col">
+          <div className="fixed inset-y-0 left-0 z-50 flex flex-col bg-white border-r border-gray-200 shadow-xl w-72">
             <div className="flex items-center justify-between p-4 border-b border-gray-200">
-              <span className="font-semibold">Menu</span>
+              <span className="font-mono font-semibold text-gray-400">
+                Future academy
+              </span>
               <button
                 type="button"
                 aria-label="Close menu"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300"
+                className="inline-flex items-center justify-center border border-gray-300 rounded-md h-9 w-9"
                 onClick={() => setMobileOpen(false)}
               >
                 <svg
